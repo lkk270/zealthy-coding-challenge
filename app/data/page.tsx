@@ -1,7 +1,7 @@
 import { UsersDataTable } from "./_components/users-data-table";
 import { getDb } from "@/db/drizzle";
 import { users, addresses } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import { unstable_noStore as noStore } from "next/cache";
 
 export default async function DataPage() {
@@ -9,7 +9,11 @@ export default async function DataPage() {
   noStore();
 
   const db = await getDb();
-  const allUsers = await db.select().from(users).leftJoin(addresses, eq(users.id, addresses.userId));
+  const allUsers = await db
+    .select()
+    .from(users)
+    .leftJoin(addresses, eq(users.id, addresses.userId))
+    .orderBy(desc(users.createdAt));
 
   // Transform joined data to match User type
   const transformedUsers = allUsers.map(({ users: user, addresses: address }) => ({
