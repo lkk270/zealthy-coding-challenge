@@ -70,3 +70,9 @@ export const states = [
 	{ value: "WI", label: "WI" },
 	{ value: "WY", label: "WY" },
 ];
+
+export const COMPONENTS = [
+	{ id: "aboutMe", label: "About Me" },
+	{ id: "dateOfBirth", label: "Date of Birth" },
+	{ id: "address", label: "Address" },
+] as const;
