@@ -11,7 +11,7 @@ type User = InferSelectModel<typeof users>;
 interface UsersDataTableProps {
 	users: User[];
 }
-
+console.log(usersColumns);
 export function UsersDataTable({ users }: UsersDataTableProps) {
 	return <DataTable columns={usersColumns} data={users} />;
 }
