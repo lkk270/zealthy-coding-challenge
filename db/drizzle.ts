@@ -9,5 +9,5 @@ const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql, { schema });
 
 export async function getDb() {
-	return db;
+  return db;
 }
