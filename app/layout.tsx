@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { AfterScrollNavbar } from "@/components/navbar/after-scroll-navbar";
+import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/navbar/navbar";
 
 const geistSans = Geist({
@@ -43,6 +44,7 @@ export default function RootLayout({
 						<Navbar />
 						<div className="px-4">{children}</div>
 					</main>
+					<Toaster />
 				</ThemeProvider>
 			</body>
 		</html>
