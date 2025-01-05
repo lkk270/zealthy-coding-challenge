@@ -23,7 +23,6 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
-
   const table = useReactTable({
     data,
     columns,
@@ -51,7 +50,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
       <DataTableToolbar table={table} />
       <div className="rounded-md border">
         <div className="overflow-hidden">
-          <div className="max-h-[calc(100vh-281px)] overflow-auto">
+          <div className="max-h-[calc(100vh-330px)] overflow-auto">
             <Table>
               <TableHeader className="sticky top-0 bg-background z-10">
                 {table.getHeaderGroups().map((headerGroup) => (

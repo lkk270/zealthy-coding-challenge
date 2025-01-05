@@ -42,7 +42,6 @@ export function DataTableToolbar<TData>({ table }: DataTableToolbarProps<TData>)
           </Button>
         )}
       </div>
-      {/* {customActions && <div className="flex gap-x-2">{customActions}</div>} */}
     </div>
   );
 }
