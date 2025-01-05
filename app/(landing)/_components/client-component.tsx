@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { LoginForm } from "./forms/login-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useUserStore } from "@/store/use-user-store";
+import { UserMenu } from "./user-menu";
 
 const ClientComponent = ({}) => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -36,7 +37,13 @@ const ClientComponent = ({}) => {
 		);
 	}
 
-	return <div className="w-full max-w-4xl mx-auto pb-10">steps</div>;
+	return (
+		<div className="w-full max-w-4xl mx-auto pb-10">
+			<div className="mb-6">
+				<UserMenu />
+			</div>
+		</div>
+	);
 };
 
 export default ClientComponent;
