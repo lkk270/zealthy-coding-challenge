@@ -10,6 +10,14 @@ import {
 
 export const stepsEnum = pgEnum("steps", ["Step2", "Step3", "Finished"]);
 
+export const componentsEnum = pgEnum("components", [
+	"aboutMe",
+	"address",
+	"dateOfBirth",
+]);
+
+export const configStepsEnum = pgEnum("configSteps", ["Step2", "Step3"]);
+
 export const users = pgTable("users", {
 	id: serial("id").primaryKey(),
 	email: text("email").notNull().unique(),
@@ -31,6 +39,14 @@ export const addresses = pgTable("addresses", {
 	city: text("city").notNull(),
 	state: text("state").notNull(),
 	zip: text("zip").notNull(),
+	createdAt: timestamp("created_at").defaultNow(),
+	updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const onboardingConfig = pgTable("onboarding_config", {
+	id: serial("id").primaryKey(),
+	component: componentsEnum("component").notNull(),
+	step: configStepsEnum("step").notNull(),
 	createdAt: timestamp("created_at").defaultNow(),
 	updatedAt: timestamp("updated_at").defaultNow(),
 });
