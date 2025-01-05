@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { updateUserStep } from "../actions/steps";
 import { StepLabel, componentsEnum } from "@/db/schema";
 import { UserMenu } from "./user-menu";
+import { UserData } from "./user-data";
 
 interface ConfigItem {
 	step: string;
@@ -184,6 +185,27 @@ const ClientComponent = ({ config }: ClientComponentProps) => {
 		});
 	};
 
+	const handleEditProfile = () => {
+		if (!user) return;
+
+		// Set current step to Step2 (index 0)
+		setCurrentStep(0);
+
+		// Update user's currentStep in store and DB
+		const updatedUser = { ...user, currentStep: "Step2" as const };
+		setUser(updatedUser);
+
+		startTransition(async () => {
+			const result = await updateUserStep(user.id, "Step2", {});
+			if (result.error) {
+				toast.error(result.error);
+				// Rollback on error
+				setUser(user);
+				setCurrentStep(sortedSteps.length - 1);
+			}
+		});
+	};
+
 	if (isLoading) {
 		return null;
 	}
@@ -198,6 +220,18 @@ const ClientComponent = ({ config }: ClientComponentProps) => {
 					<LoginForm />
 				</CardContent>
 			</Card>
+		);
+	}
+
+	// Show completion view if user is finished
+	if (user.currentStep === "Finished") {
+		return (
+			<div className="w-full max-w-4xl mx-auto pb-10">
+				<div className="mb-6">
+					<UserMenu />
+				</div>
+				<UserData user={user} onEdit={handleEditProfile} />
+			</div>
 		);
 	}
 
