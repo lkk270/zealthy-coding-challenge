@@ -19,6 +19,9 @@ export default async function AdminPage() {
 	return (
 		<div className="container mx-auto py-10">
 			<h1 className="text-2xl font-bold mb-8">Onboarding Configuration</h1>
+			<h3 className="text-sm font-semibold text-muted-foreground mb-8">
+				Drag & Drop to Reorder
+			</h3>
 			<ConfigurationEditor initialConfig={initialConfig} />
 		</div>
 	);

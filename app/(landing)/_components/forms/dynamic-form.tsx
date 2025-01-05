@@ -88,7 +88,7 @@ export const DynamicForm = ({
 				name="aboutMe"
 				render={({ field }) => (
 					<FormItem>
-						<FormLabel>About Me</FormLabel>
+						<FormLabel className="font-bold">About Me</FormLabel>
 						<FormControl>
 							<Textarea
 								{...field}
@@ -109,7 +109,7 @@ export const DynamicForm = ({
 				name="dateOfBirth"
 				render={({ field }) => (
 					<FormItem>
-						<FormLabel>Date of Birth</FormLabel>
+						<FormLabel className="font-bold">Date of Birth</FormLabel>
 						<FormControl>
 							<GenericCalendar
 								handleChange={(value) => {
@@ -137,7 +137,7 @@ export const DynamicForm = ({
 					name="address.address1"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Address</FormLabel>
+							<FormLabel className="font-bold">Address</FormLabel>
 							<FormControl>
 								<Input {...field} placeholder="Address line 1" />
 							</FormControl>
@@ -150,7 +150,7 @@ export const DynamicForm = ({
 					name="address.address2"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Address 2 (Optional)</FormLabel>
+							<FormLabel className="font-bold">Address 2 (Optional)</FormLabel>
 							<FormControl>
 								<Input {...field} placeholder="Address line 2" />
 							</FormControl>
@@ -163,7 +163,7 @@ export const DynamicForm = ({
 					name="address.city"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>City</FormLabel>
+							<FormLabel className="font-bold">City</FormLabel>
 							<FormControl>
 								<Input {...field} placeholder="City" />
 							</FormControl>
@@ -176,7 +176,7 @@ export const DynamicForm = ({
 					name="address.state"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>State</FormLabel>
+							<FormLabel className="font-bold">State</FormLabel>
 							<FormControl>
 								<GenericCombobox
 									items={states}
@@ -194,7 +194,7 @@ export const DynamicForm = ({
 					name="address.zip"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>ZIP Code</FormLabel>
+							<FormLabel className="font-bold">ZIP Code</FormLabel>
 							<FormControl>
 								<Input {...field} placeholder="ZIP code" />
 							</FormControl>

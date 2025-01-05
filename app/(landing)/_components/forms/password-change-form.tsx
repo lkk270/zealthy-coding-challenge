@@ -63,7 +63,7 @@ export const PasswordChangeForm = ({ onSuccess }: PasswordChangeFormProps) => {
 						name="currentPassword"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Current Password</FormLabel>
+								<FormLabel className="font-bold">Current Password</FormLabel>
 								<FormControl>
 									<Input {...field} type="password" />
 								</FormControl>
@@ -76,7 +76,7 @@ export const PasswordChangeForm = ({ onSuccess }: PasswordChangeFormProps) => {
 						name="newPassword"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>New Password</FormLabel>
+								<FormLabel className="font-bold">New Password</FormLabel>
 								<FormControl>
 									<Input {...field} type="password" />
 								</FormControl>
@@ -89,7 +89,9 @@ export const PasswordChangeForm = ({ onSuccess }: PasswordChangeFormProps) => {
 						name="confirmPassword"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Confirm New Password</FormLabel>
+								<FormLabel className="font-bold">
+									Confirm New Password
+								</FormLabel>
 								<FormControl>
 									<Input {...field} type="password" />
 								</FormControl>

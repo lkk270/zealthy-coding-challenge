@@ -61,7 +61,7 @@ export const LoginForm = () => {
 						name="email"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Email</FormLabel>
+								<FormLabel className="font-bold">Email</FormLabel>
 								<FormControl>
 									<Input
 										{...field}
@@ -79,7 +79,7 @@ export const LoginForm = () => {
 						name="password"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Password</FormLabel>
+								<FormLabel className="font-bold">Password</FormLabel>
 								<FormControl>
 									<Input
 										{...field}
