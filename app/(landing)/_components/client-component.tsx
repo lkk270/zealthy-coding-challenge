@@ -5,7 +5,7 @@ import { LoginForm } from "./forms/login-form";
 import { DynamicForm } from "./forms/dynamic-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useUserStore } from "@/store/use-user-store";
-import { createStepSchema, ComponentSchemas } from "../schema";
+import { createStepSchema } from "../schema";
 import { StepConfig } from "@/app/types";
 import { toast } from "sonner";
 import { updateUserStep } from "../actions/steps";

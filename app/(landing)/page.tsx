@@ -1,6 +1,5 @@
 import { getDb } from "@/db/drizzle";
 import ClientComponent from "./_components/client-component";
-import { ComponentSchemas } from "./schema";
 
 export default async function Home() {
 	const db = await getDb();
