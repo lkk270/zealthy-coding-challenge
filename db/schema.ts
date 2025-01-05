@@ -34,3 +34,5 @@ export const addresses = pgTable("addresses", {
 	createdAt: timestamp("created_at").defaultNow(),
 	updatedAt: timestamp("updated_at").defaultNow(),
 });
+
+export type StepLabel = (typeof stepsEnum.enumValues)[number];
