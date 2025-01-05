@@ -32,31 +32,16 @@ export function ConfigurationEditor({
 
 		// Set the original order on first render
 		originalOrder.current = JSON.stringify(config);
-		console.log("Original order set:", originalOrder.current);
 		return config;
 	});
 
 	const isValidConfiguration = (config: typeof steps) => {
 		const isValid = config.step2.length > 0 && config.step3.length > 0;
-		console.log("Validation check:", {
-			step2Length: config.step2.length,
-			step3Length: config.step3.length,
-			isValid,
-		});
 		return isValid;
 	};
 
 	const hasConfigurationChanged = (currentConfig: typeof steps) => {
 		const currentString = JSON.stringify(currentConfig);
-
-		console.log("Configuration comparison:", {
-			current: currentString,
-			original: originalOrder.current,
-			areEqual: currentString === originalOrder.current,
-			currentConfig,
-			originalString: JSON.parse(originalOrder.current),
-		});
-
 		return currentString !== originalOrder.current;
 	};
 
@@ -88,35 +73,25 @@ export function ConfigurationEditor({
 	};
 
 	const handleSave = async () => {
-		console.log("Save attempted:", {
-			steps,
-			initialConfig,
-			isValid: isValidConfiguration(steps),
-		});
-
 		if (!isValidConfiguration(steps)) {
 			toast.error("Each step must have at least one component");
 			return;
 		}
 
 		if (!hasConfigurationChanged(steps)) {
-			console.log("No changes detected");
 			toast.info("No changes made");
 			return;
 		}
 
-		console.log("Saving changes to server");
 		const result = await saveConfig(steps);
 		if (result.success) {
 			// Update the original order reference after successful save
 			originalOrder.current = JSON.stringify(steps);
-			console.log("New baseline set:", originalOrder.current);
 			toast.success("Configuration saved successfully");
 		} else {
 			toast.error(result.error);
 		}
 	};
-	console.log("Current steps:", steps);
 
 	return (
 		<>

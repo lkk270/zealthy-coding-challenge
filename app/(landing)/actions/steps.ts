@@ -16,7 +16,6 @@ export async function updateUserStep(
 ) {
 	try {
 		const db = await getDb();
-		console.log("Received data in server action:", data);
 
 		const updateData: Partial<User> = {
 			currentStep: step,
@@ -46,13 +45,10 @@ export async function updateUserStep(
 			}
 		}
 
-		console.log("Update data being sent to DB:", updateData);
-
 		await db.update(users).set(updateData).where(eq(users.id, userId));
 
 		return { success: true };
 	} catch (error) {
-		console.log("Error in updateUserStep:", error);
 		console.error("[UPDATE_USER_STEP_ERROR]", error);
 		return { error: "Something went wrong!" };
 	}

@@ -77,7 +77,6 @@ export const DynamicForm = ({
 	});
 
 	const formValues = form.watch();
-	console.log("Current form values:", formValues);
 
 	const componentRenderers: Record<
 		string,
