@@ -4,6 +4,7 @@ import { getDb } from "@/db/drizzle";
 import { users, addresses, stepsEnum } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { InferSelectModel } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 type User = InferSelectModel<typeof users>;
 type Address = InferSelectModel<typeof addresses>;
@@ -41,6 +42,8 @@ export async function updateUserStep(userId: number, step: StepType, data: Recor
 
     await db.update(users).set(updateData).where(eq(users.id, userId));
 
+    revalidatePath("/");
+    revalidatePath("/data");
     return { success: true };
   } catch (error) {
     console.error("[UPDATE_USER_STEP_ERROR]", error);

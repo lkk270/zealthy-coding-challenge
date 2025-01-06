@@ -2,12 +2,8 @@ import { UsersDataTable } from "./_components/users-data-table";
 import { getDb } from "@/db/drizzle";
 import { users, addresses } from "@/db/schema";
 import { eq, desc } from "drizzle-orm";
-import { unstable_noStore as noStore } from "next/cache";
 
 export default async function DataPage() {
-  // Opt out of caching for this page
-  noStore();
-
   const db = await getDb();
   const allUsers = await db
     .select()

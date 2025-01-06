@@ -1,11 +1,8 @@
 import { getDb } from "@/db/drizzle";
 import { onboardingConfig } from "@/db/schema";
 import { ConfigurationEditor } from "./_components/configuration-editor";
-import { unstable_noStore as noStore } from "next/cache";
 
 export default async function AdminPage() {
-  noStore();
-
   const db = await getDb();
   const config = await db.select().from(onboardingConfig);
 
