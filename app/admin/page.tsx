@@ -1,10 +1,11 @@
 import { getDb } from "@/db/drizzle";
 import { onboardingConfig } from "@/db/schema";
 import { ConfigurationEditor } from "./_components/configuration-editor";
+import { desc } from "drizzle-orm";
 
 export default async function AdminPage() {
   const db = await getDb();
-  const config = await db.select().from(onboardingConfig);
+  const config = await db.select().from(onboardingConfig).orderBy(desc(onboardingConfig.updatedAt));
 
   // Transform data
   const initialConfig = {
