@@ -1,7 +1,7 @@
 "use client";
 
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
-import { useState, useRef } from "react";
+import { useState, useRef, useTransition } from "react";
 import { toast } from "sonner";
 import { saveConfig } from "../actions/save-config";
 import { COMPONENTS } from "@/lib/constants";
@@ -16,6 +16,7 @@ interface ConfigurationEditorProps {
 }
 
 export function ConfigurationEditor({ initialConfig }: ConfigurationEditorProps) {
+  const [isPending, startTransition] = useTransition();
   // Store the original order in ref when component mounts
   const originalOrder = useRef<string>("");
 
@@ -74,14 +75,16 @@ export function ConfigurationEditor({ initialConfig }: ConfigurationEditorProps)
       return;
     }
 
-    const result = await saveConfig(steps);
-    if (result.success) {
-      // Update the original order reference after successful save
-      originalOrder.current = JSON.stringify(steps);
-      toast.success("Configuration saved successfully");
-    } else {
-      toast.error(result.error);
-    }
+    startTransition(async () => {
+      const result = await saveConfig(steps);
+      if (result.success) {
+        // Update the original order reference after successful save
+        originalOrder.current = JSON.stringify(steps);
+        toast.success("Configuration saved successfully");
+      } else {
+        toast.error(result.error);
+      }
+    });
   };
 
   return (
@@ -95,11 +98,12 @@ export function ConfigurationEditor({ initialConfig }: ConfigurationEditorProps)
 
       <Button
         onClick={handleSave}
-        disabled={!isValidConfiguration(steps)}
+        disabled={!isValidConfiguration(steps) || isPending}
         variant="default"
+        type="submit"
         className="mt-8 px-4 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Save Configuration
+        {isPending ? "Loading..." : "Save Configuration"}
       </Button>
     </>
   );
